@@ -1,0 +1,20 @@
+server.port: 8081
+spring.application.name: web
+
+spring.rabbitmq:
+  listener.simple.concurrency: 5
+  username: guest
+  password: guest
+  host: localhost
+
+messaging:
+  exchange: spring-cloud-example
+  cat-creation:
+    routing-key: cat-get-event
+  cat-reply:
+    queue: cat-service-reply
+  user:
+    routing-key: user-event
+
+zuul.url: http://localhost:8090
+user.get-all.url: ${zuul.url}/api/users

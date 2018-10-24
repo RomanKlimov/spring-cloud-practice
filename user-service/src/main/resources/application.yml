@@ -1,0 +1,32 @@
+spring.application.name: user
+
+eureka.client.service-url.defaultZone: http://localhost:8761/eureka
+
+spring.rabbitmq:
+  listener.concurrency: 5
+  username: guest
+  password: guest
+  host: localhost
+
+spring.datasource:
+  url: jdbc:postgresql://localhost:5432/test
+  username: postgres
+  password: 1Romkafun
+
+messaging:
+  exchange: spring-cloud-example
+  user:
+    queue: user-service
+    routing-key: user-event
+  cat-creation:
+    routing-key: cat-get-event
+  cat-reply:
+    queue: cat-service-reply
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+zuul.url: http://localhost:8090
+user.get-all.url: ${zuul.url}/api/web
