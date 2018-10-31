@@ -2,15 +2,18 @@
 <html>
 <head>
     <title>All users</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <#--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    <#--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
 </head>
 <body>
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="highlight">
+                <thead >
                 <tr>
                     <th scope="col">Name</th>
                     <th scope="col">Photo</th>
@@ -22,7 +25,7 @@
                         <tr>
                         <#--<td>${user.id}</td>-->
                             <td scope="row">${user.name}</td>
-                            <td><img src="${user.imgUrl}" class="img-responsive img-thumbnail"></td>
+                            <td><img src="${user.imgUrl}" </td>
                         </tr>
                     </#list>
                 </#if>

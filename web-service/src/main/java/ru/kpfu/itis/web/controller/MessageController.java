@@ -13,8 +13,9 @@ public class MessageController {
     @Autowired
     private MessageService messageService;
 
-//    @GetMapping("/image/{userId}")
-//    public void sendEventToCreateCatImage(@DestinationVariable("userId") String userId) {
-//        messageService.getImage(userId);
-//    }
+    @MessageMapping("/image/{userId}")
+    public void sendEventToCreateCatImage(@DestinationVariable("userId") String userId) {
+        System.out.println("userID = " + userId);
+        messageService.getImage(userId);
+    }
 }

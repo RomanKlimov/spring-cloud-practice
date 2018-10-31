@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 EXPOSE 8761
+VOLUME /tmp
 
 ARG JAR_FILE=target/service-registry-0.1.jar
 

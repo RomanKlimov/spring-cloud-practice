@@ -37,22 +37,22 @@ public class UserServiceImpl implements UserService {
                 .name(userDto.getName())
                 .build();
         userRepository.save(user);
-        Long id = user.getId();
-        CatDto dto = CatDto.builder()
-                .id(id.toString())
-                .build();
-        rabbitTemplate.convertAndSend(messagingProperties.getExchange(),
-                messagingProperties.getCatCreation().getRoutingKey(), dto);
+//        Long id = user.getId();
+//        CatDto dto = CatDto.builder()
+//                .id(id.toString())
+//                .build();
+//        rabbitTemplate.convertAndSend(messagingProperties.getExchange(),
+//                messagingProperties.getCatCreation().getRoutingKey(), dto);
 
     }
-    @RabbitListener(queues = "${messaging.cat-reply.queue}")
-    public void sendImage(CatDto catDto) {
-        String id = catDto.getId();
-        System.out.println(catDto.getUrl());
-        User user = userRepository.getById(Long.parseLong(id));
-        user.setImgUrl(catDto.getUrl());
-        userRepository.save(user);
-
-    }
+//    @RabbitListener(queues = "${messaging.cat-reply.queue}")
+//    public void sendImage(CatDto catDto) {
+//        String id = catDto.getId();
+//        System.out.println(catDto.getUrl());
+//        User user = userRepository.getById(Long.parseLong(id));
+//        user.setImgUrl(catDto.getUrl());
+//        userRepository.save(user);
+//
+//    }
 
 }

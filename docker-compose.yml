@@ -36,7 +36,7 @@ services:
     - rabbit
     - gateway
     ports:
-    - "8080:8080"
+    - "8081:8081"
     restart: always
 
   db:
@@ -44,9 +44,9 @@ services:
     ports:
     - "5432:5432"
     volumes:
-      - /home/maxim/Docker/postgres/data:/var/lib/postgresql/data
+    - "./postgres-local:/var/lib/postgresql/data"
     environment:
-    - POSTGRES_PASSWORD=password
+    - POSTGRES_PASSWORD=1Romkafun
     - POSTGRES_USER=postgres
     - POSTGRES_DB=test
 
@@ -56,8 +56,9 @@ services:
     - "5672:5672"
     - "15672:15672"
     volumes:
-    - /home/maxim/Docker/RabbitMq/data:/var/lib/rabbitmq
-    - /home/maxim/Docker/RabbitMq/data/logs:/var/log/rabbitmq
+    - "./rabbit-local/data:/var/lib/rabbitmq"
+    - "./rabbit-local/data/logs:/var/log/rabbitmq"
     environment:
     - RABBITMQ_LOGS=/var/log/rabbitmq/rabbit.log
     - RABBITMQ_USE_LONGNAME=true
+    container_name: rabbit

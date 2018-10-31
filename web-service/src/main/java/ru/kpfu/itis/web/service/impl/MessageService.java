@@ -13,9 +13,9 @@ import ru.kpfu.itis.web.dto.UserDto;
 @EnableRabbit
 @Service
 public class MessageService {
-//
-//    @Autowired
-//    private SimpMessagingTemplate messagingTemplate;
+
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
@@ -23,21 +23,21 @@ public class MessageService {
     @Autowired
     private MessagingProperties messagingProperties;
 
-//    public void getImage(String userId) {
-//        System.out.println();
-//        CatDto dto = CatDto.builder()
-//                .id(userId)
-//                .build();
-//        rabbitTemplate.convertAndSend(messagingProperties.getExchange(),
-//                messagingProperties.getCatCreation().getRoutingKey(), dto);
-//    }
+    public void getImage(String userId) {
+        System.out.println("hey there");
+        CatDto dto = CatDto.builder()
+                .id(userId)
+                .build();
+        rabbitTemplate.convertAndSend(messagingProperties.getExchange(),
+                messagingProperties.getCatCreation().getRoutingKey(), dto);
+    }
 
-//    @RabbitListener(queues = "${messaging.cat-reply.queue}")
-//    public void sendImage(CatDto catDto) {
-//        String id = catDto.getId();
-//        System.out.println(catDto.getUrl());
-//        messagingTemplate.convertAndSend("/topic/image/" + id + "/reply", catDto.getUrl());
-//    }
+    @RabbitListener(queues = "${messaging.cat-reply.queue}")
+    public void sendImage(CatDto catDto) {
+        String id = catDto.getId();
+        System.out.println("catID = " + catDto.getUrl());
+        messagingTemplate.convertAndSend("/topic/image/" + id + "/reply", catDto.getUrl());
+    }
 
     public void registerUser(UserDto userDto) {
         System.out.println(messagingProperties.getExchange());

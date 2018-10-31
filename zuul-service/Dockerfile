@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
 EXPOSE 8090
+VOLUME /tmp
 
 ARG JAR_FILE=target/zuul-service-0.1.jar
 

@@ -1,6 +1,7 @@
 FROM openjdk:8-jdk-alpine
 
-EXPOSE 8080
+EXPOSE 8081
+VOLUME /tmp
 
 ARG JAR_FILE=target/web-service-0.1.jar
 
