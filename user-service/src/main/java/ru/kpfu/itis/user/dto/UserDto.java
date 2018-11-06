@@ -9,5 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserDto {
     private String name;
+    private String password;
     private String imgUrl;
 }

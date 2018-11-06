@@ -22,6 +22,7 @@
                 <div class="form-group">
                     <label for="connect">Enter name:</label>
                     <input id="name" type="text" name="name" class="validate" placeholder="Your name here..."/>
+                    <input id="password" type="password" name="password" class="validate" placeholder="Your password here..."/>
                     <input id="connect" class="waves-effect waves-light btn" type="button" value="Get dog image">
                 </div>
                 <button type="submit"  class="waves-effect waves-light btn">Register</button>

@@ -9,6 +9,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>    <#--<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>-->
 </head>
 <body>
+
+<h2>Hello, ${Request.username!}</h2>
+<a href="/ui/logout">Logout</a>
+
 <div id="main-content" class="container">
     <div class="row">
         <div class="col-md-6">

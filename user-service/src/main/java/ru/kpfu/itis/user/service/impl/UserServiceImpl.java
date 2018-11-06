@@ -35,6 +35,7 @@ public class UserServiceImpl implements UserService {
         User user = User.builder()
                 .imgUrl(userDto.getImgUrl())
                 .name(userDto.getName())
+                .password(userDto.getPassword())
                 .build();
         userRepository.save(user);
 //        Long id = user.getId();
