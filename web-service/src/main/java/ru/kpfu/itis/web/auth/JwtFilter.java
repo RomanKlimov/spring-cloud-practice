@@ -19,10 +19,10 @@ public class JwtFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String username = JwtUtil.parseToken(httpServletRequest, jwtTokenCookieName, signingKey);
         System.out.println("username =  " + username);
-        if(username == null){
+        if (username == null){
             String authService = this.getFilterConfig().getInitParameter("services.auth");
             httpServletResponse.sendRedirect(authService + "?redirect=" + httpServletRequest.getRequestURL());
-        } else{
+        } else {
             httpServletRequest.setAttribute("username", username);
             filterChain.doFilter(httpServletRequest, httpServletResponse);
         }

@@ -1,12 +1,11 @@
 package ru.kpfu.itis.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import ru.kpfu.itis.web.auth.CookieUtil;
 import ru.kpfu.itis.web.auth.JwtUtil;
 import ru.kpfu.itis.web.dto.UserDto;
@@ -14,7 +13,6 @@ import ru.kpfu.itis.web.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,8 +58,8 @@ public class UserController {
         for (UserDto u : users) {
             logPas.put(u.getName(),u.getPassword());
         }
-        if (username == null || !logPas.containsKey(username) || !logPas.get(username).equals(password)){
-            model.addAttribute("error", "Invalid username or password!");
+        if (username == null || !logPas.containsKey(username) || !logPas.get(username).equals(password) || JwtUtil.checkIfUserInBlackList(username)){
+            model.addAttribute("error", "Invalid username or password! or u r in a blackList");
             return "login";
         }
 
@@ -76,6 +74,13 @@ public class UserController {
         JwtUtil.invalidateRelatedTokens(httpServletRequest);
         CookieUtil.clear(httpServletResponse, jwtTokenCookieName);
         return "redirect:/ui/login";
+    }
+
+    @PostMapping("/block")
+    public @ResponseBody ResponseEntity<HttpStatus> blockUser(@RequestParam("username") String username) {
+        JwtUtil.invalidateTokenByUsername(username);
+        JwtUtil.addToBlackList(username);
+        return ResponseEntity.ok(HttpStatus.OK);
     }
 
 }
